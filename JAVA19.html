@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Image Gallery</title>
+  <style>
+    .gallery img {
+      width: 150px;
+      height: 100px;
+      margin: 10px;
+      border: 2px solid #ccc;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .gallery img:hover,
+    .gallery img.tabfocus {
+      transform: scale(1.2);
+      border-color: #ff6600;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Interactive Image Gallery</h1>
+
+<div class="gallery">
+  <img src="image1.jpg" alt="Image 1 description">
+  <img src="image2.jpg" alt="Image 2 description">
+  <img src="image3.jpg" alt="Image 3 description">
+  <img src="image4.jpg" alt="Image 4 description">
+  <img src="image5.jpg" alt="Image 5 description">
+  <img src="image6.jpg" alt="Image 6 description">
+</div>
+
+<script>
+  // Run code after page loads
+  window.onload = function() {
+    console.log("Page loaded. Script is running.");
+
+    const images = document.querySelectorAll('.gallery img');
+
+    // Loop through all images
+    for (let i = 0; i < images.length; i++) {
+      const img = images[i];
+
+      // Add tabindex for keyboard access
+      img.setAttribute('tabindex', '0');
+
+      // Mouse events
+      img.onmouseover = function() {
+        console.log(`Mouse over image ${i + 1}`);
+      };
+      img.onmouseout = function() {
+        console.log(`Mouse out image ${i + 1}`);
+      };
+
+      // Keyboard focus events
+      img.onfocus = function() {
+        img.classList.add('tabfocus');
+        console.log(`Image ${i + 1} focused`);
+      };
+      img.onblur = function() {
+        img.classList.remove('tabfocus');
+        console.log(`Image ${i + 1} lost focus`);
+      };
+    }
+  };
+</script>
+
+</body>
+</html>
+
+    
